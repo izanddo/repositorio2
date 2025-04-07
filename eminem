@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eminem - Greatest Hits</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #121212;
+            margin: 0;
+            padding: 20px;
+            color: #fff;
+            display: flex;
+            justify-content: center;
+            min-height: 100vh;
+        }
+        .album-container {
+            max-width: 800px;
+            width: 100%;
+            background-color: #1e1e1e;
+            box-shadow: 0 0 30px rgba(0,0,0,0.7);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        .album-cover {
+            width: 100%;
+            height: 400px;
+            background-image: url('https://i.postimg.cc/mkyBCnh1/enhanced-cd-maximum-eminem-the-unauthorised-biography-eminem-0000.png');
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            border-bottom: 5px solid #e64d00;
+        }
+        .album-title {
+            position: absolute;
+            bottom: 30px;
+            left: 30px;
+            text-shadow: 2px 2px 10px rgba(0,0,0,0.9);
+        }
+        .album-title h1 {
+            margin: 0;
+            font-size: 3em;
+            font-weight: 900;
+            color: #fff;
+            letter-spacing: -1px;
+        }
+        .album-title h2 {
+            margin: 5px 0 0;
+            font-size: 1.5em;
+            font-weight: 300;
+            color: #ccc;
+        }
+        .album-content {
+            padding: 30px;
+        }
+        .intro {
+            margin-bottom: 30px;
+            line-height: 1.6;
+            color: #ddd;
+        }
+        .intro h2 {
+            color: #e64d00;
+            margin-top: 0;
+            font-size: 1.8em;
+        }
+        .tracklist {
+            list-style-type: none;
+            padding: 0;
+            margin-top: 30px;
+        }
+        .tracklist li {
+            padding: 15px;
+            border-bottom: 1px solid #333;
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+        .tracklist li:hover {
+            background-color: #2a2a2a;
+        }
+        .tracklist li.playing {
+            background-color: #e64d0030;
+            border-left: 3px solid #e64d00;
+        }
+        .track-number {
+            color: #e64d00;
+            width: 30px;
+            font-weight: bold;
+        }
+        .track-title {
+            flex-grow: 1;
+            font-weight: bold;
+        }
+        .track-duration {
+            color: #777;
+            margin-left: 15px;
+        }
+        .player-container {
+            margin-top: 30px;
+            background: #252525;
+            border-radius: 10px;
+            padding: 15px;
+        }
+        .custom-player {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        .player-controls {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        .player-btn {
+            background: #e64d00;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            font-size: 16px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s;
+        }
+        .player-btn:hover {
+            background: #ff5c0f;
+            transform: scale(1.05);
+        }
+        .progress-container {
+            flex-grow: 1;
+            height: 6px;
+            background: #444;
+            border-radius: 3px;
+            cursor: pointer;
+            position: relative;
+        }
+        .progress-bar {
+            height: 100%;
+            background: #e64d00;
+            border-radius: 3px;
+            width: 0%;
+        }
+        .time-display {
+            display: flex;
+            justify-content: space-between;
+            font-size: 12px;
+            color: #aaa;
+            margin-top: 5px;
+        }
+        .footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #000;
+            color: #777;
+            font-size: 0.9em;
+            margin-top: 30px;
+        }
+    </style>
+</head>
+<body>
+    <div class="album-container">
+        <div class="album-cover">
+            <div class="album-title">
+                <h1>GREATEST HITS</h1>
+                <h2>EMINEM - INSTANT PLAY</h2>
+            </div>
+        </div>
+        <div class="album-content">
+            <div class="intro">
+                <h2>Eminem: The Rap God</h2>
+                <p>Marshall Mathers, known as Eminem, is considered one of the greatest rappers of all time. With his aggressive style and emotionally charged lyrics, he revolutionized hip-hop and became a global cultural icon.</p>
+            </div>
+            <h3>TRACK LIST (CLICK TO PLAY)</h3>
+            <ul class="tracklist" id="playlist">
+                <li data-src="https://ia800700.us.archive.org/1/items/LoseYourselfClean/Lose%20Yourself%20%5BClean%5D.mp3">
+                    <span class="track-number">1</span>
+                    <span class="track-title">Lose Yourself</span>
+                    <span class="track-duration">5:26</span>
+                </li>
+                <li data-src="https://dn721809.ca.archive.org/0/items/1-05-stan-feat.-dido/1%20-%2001%20-%20Intro.mp3">
+                    <span class="track-number">2</span>
+                    <span class="track-title">Stan (feat. Dido)</span>
+                    <span class="track-duration">6:44</span>
+                </li>
+                <li data-src="https://ia801000.us.archive.org/10/items/eminem-w/Eminem%20-%20Without%20Me%20%28Official%20Music%20Video%29.mp3">
+                    <span class="track-number">3</span>
+                    <span class="track-title">Without Me</span>
+                    <span class="track-duration">4:50</span>
+                </li>
+                <li data-src="https://ia600604.us.archive.org/27/items/NotAfraidcdq/Eminem-NotAfraidcdq.mp3">
+                    <span class="track-number">4</span>
+                    <span class="track-title">Not Afraid</span>
+                    <span class="track-duration">4:10</span>
+                </li>
+                <li data-src="https://ia803107.us.archive.org/8/items/emrg_20191011/eminem%20rap%20god%20explicit.mp3">
+                    <span class="track-number">5</span>
+                    <span class="track-title">Rap God</span>
+                    <span class="track-duration">6:04</span>
+                </li>
+                <li data-src="https://dn720300.ca.archive.org/0/items/the-real-slim-shady/The%20real%20slim%20shady.mp3">
+                    <span class="track-number">6</span>
+                    <span class="track-title">The Real Slim Shady</span>
+                    <span class="track-duration">4:44</span>
+                </li>
+            </ul>
+            <div class="player-container">
+                <div class="custom-player">
+                    <div class="player-controls">
+                        <button class="player-btn" id="play-btn">▶</button>
+                        <div class="progress-container" id="progress-container">
+                            <div class="progress-bar" id="progress-bar"></div>
+                        </div>
+                    </div>
+                    <div class="time-display">
+                        <span id="current-time">0:00</span>
+                        <span id="duration">0:00</span>
+                    </div>
+                </div>
+                <audio id="audio-player"></audio>
+            </div>
+        </div>
+        <div class="footer">
+            <p>© 2023 | All rights belong to their respective owners</p>
+        </div>
+    </div>
+    <script>
+        const playlist = document.getElementById('playlist');
+        const audioPlayer = document.getElementById('audio-player');
+        const tracks = playlist.querySelectorAll('li');
+        const playBtn = document.getElementById('play-btn');
+        const progressBar = document.getElementById('progress-bar');
+        const progressContainer = document.getElementById('progress-container');
+        const currentTimeDisplay = document.getElementById('current-time');
+        const durationDisplay = document.getElementById('duration');
+        let isPlaying = false;
+        function formatTime(seconds) {
+            const minutes = Math.floor(seconds / 60);
+            const secs = Math.floor(seconds % 60);
+            return `${minutes}:${secs < 10 ? '0' : ''}${secs}`;
+        }
+        function updateProgress() {
+            const { currentTime, duration } = audioPlayer;
+            const progressPercent = (currentTime / duration) * 100;
+            progressBar.style.width = `${progressPercent}%`;
+            currentTimeDisplay.textContent = formatTime(currentTime);
+            if (!isNaN(duration)) {
+                durationDisplay.textContent = formatTime(duration);
+            }
+        }
+        function setProgress(e) {
+            const width = this.clientWidth;
+            const clickX = e.offsetX;
+            const duration = audioPlayer.duration;
+            audioPlayer.currentTime = (clickX / width) * duration;
+        }
+        function togglePlay() {
+            if (isPlaying) {
+                audioPlayer.pause();
+                playBtn.textContent = '▶';
+            } else {
+                audioPlayer.play();
+                playBtn.textContent = '⏸';
+            }
+            isPlaying = !isPlaying;
+        }
+        function playTrack(trackIndex) {
+            tracks.forEach(t => t.classList.remove('playing'));
+            tracks[trackIndex].classList.add('playing');
+            audioPlayer.src = tracks[trackIndex].getAttribute('data-src');
+            audioPlayer.play();
+            isPlaying = true;
+            playBtn.textContent = '⏸';
+        }
+        tracks.forEach((track, index) => {
+            track.addEventListener('click', () => playTrack(index));
+        });
+        playBtn.addEventListener('click', togglePlay);
+        progressContainer.addEventListener('click', setProgress);
+        audioPlayer.addEventListener('timeupdate', updateProgress);
+        audioPlayer.addEventListener('ended', () => {
+            const currentIndex = Array.from(tracks).findIndex(t => t.classList.contains('playing'));
+            if (currentIndex < tracks.length - 1) {
+                playTrack(currentIndex + 1);
+            } else {
+                isPlaying = false;
+                playBtn.textContent = '▶';
+            }
+        });
+        audioPlayer.addEventListener('loadedmetadata', updateProgress);
+    </script>
+</body>
+</html>
